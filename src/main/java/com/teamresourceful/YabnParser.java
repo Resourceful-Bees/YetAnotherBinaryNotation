@@ -56,6 +56,17 @@ public final class YabnParser {
         return new YabnArray(elements);
     }
 
+    private static YabnArray readDatalessTypedArray(ByteReader data) {
+        YabnType type = YabnType.fromId(data.readByte());
+        if (type.hasData) throw new YabnException("Type for dataless typed array is not permitted in dataless typed arrays.");
+        int size = data.readVInt();
+        List<YabnElement> elements = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            elements.add(getElement(type, data));
+        }
+        return new YabnArray(elements);
+    }
+
     private static YabnElement getElement(YabnType type, ByteReader data) {
         return switch (type) {
             case NULL -> YabnPrimitive.ofNull();
@@ -73,6 +84,7 @@ public final class YabnParser {
 
             case ARRAY -> readArray(data, null);
             case TYPED_ARRAY -> readArray(data, YabnType.fromId(data.readByte()));
+            case DATALESS_TYPED_ARRAY -> readDatalessTypedArray(data);
             case OBJECT -> readyObject(data);
             case EMPTY_ARRAY -> new YabnArray();
             case EMPTY_OBJECT -> new YabnObject();

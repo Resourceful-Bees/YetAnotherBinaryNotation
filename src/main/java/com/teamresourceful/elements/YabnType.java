@@ -20,7 +20,8 @@ public enum YabnType {
     EMPTY_ARRAY(0x0E),
     EMPTY_OBJECT(0x0F),
     NULL_STRING(0x10, true),
-    TYPED_ARRAY(0x11, true);
+    TYPED_ARRAY(0x11, true),
+    DATALESS_TYPED_ARRAY(0x12, true);
 
     private static final Map<Byte, YabnType> LOOKUP = new HashMap<>() {{
         for (YabnType type : YabnType.values()) {

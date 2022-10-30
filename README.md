@@ -20,26 +20,25 @@ JSON version of the above:
 ```
 
 YABN Types:
-| Type            | Byte ID | Has Data |
-|-----------------|---------|----------|
-| Null            | 0x01    | False    |
-| Boolean (True)  | 0x02    | False    |
-| Boolean (False) | 0x03    | False    |
-| Byte (8 bit)    | 0x04    | True     |
-| Short (16 bit)  | 0x05    | True     |
-| Int (32 bit)    | 0x06    | True     |
-| Long (64 bit)   | 0x07    | True     |
-| Double (64 bit) | 0x08    | True     |
-| Float (32 bit)  | 0x09    | True     |
-| CString         | 0x0A    | True     |
-| Empty String    | 0x0B    | False    |
-| Array           | 0x0C    | True     |
-| Object          | 0x0D    | True     |
-| Empty Array     | 0x0E    | False    |
-| Empty Object    | 0x0F    | False    |
-| Null String     | 0x10    | True     |
+| Type                     | Byte ID | Has Data |
+|--------------------------|---------|----------|
+| Null                     | 0x01    | False    |
+| Boolean (True)           | 0x02    | False    |
+| Boolean (False)          | 0x03    | False    |
+| Byte (8 bit)             | 0x04    | True     |
+| Short (16 bit)           | 0x05    | True     |
+| Int (32 bit)             | 0x06    | True     |
+| Long (64 bit)            | 0x07    | True     |
+| Double (64 bit)          | 0x08    | True     |
+| Float (32 bit)           | 0x09    | True     |
+| CString                  | 0x0A    | True     |
+| Empty String             | 0x0B    | False    |
+| Array                    | 0x0C    | True     |
+| Object                   | 0x0D    | True     |
+| Empty Array              | 0x0E    | False    |
+| Empty Object             | 0x0F    | False    |
+| Null String              | 0x10    | True     |
+| Typed Array              | 0x11    | True     |
+| Dataless Typed Array     | 0x12    | True     |
 
-Ive put which ones have data or not and their byte id.
-Ones without data can not be used in a typed array as it would not actually do anything with the way I have it formatted.
-In the future I may make a dataless typed array which just has the number of elements and the type to reduce sizes even 
-more but for now you have to use a normal array for dataless types.
+I've put which ones have data or not and their byte id.

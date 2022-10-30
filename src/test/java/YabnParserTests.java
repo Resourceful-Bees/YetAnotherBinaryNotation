@@ -130,6 +130,17 @@ public class YabnParserTests {
     }
 
     @Test
+    public void parseDatalessTypedArray() {
+        YabnElement element = YabnTestHelper.parseElement((byte) 0x12, (byte) 0x02, (byte) 0x08);
+        Assertions.assertEquals(YabnType.DATALESS_TYPED_ARRAY, element.getType(), "Expected dataless typed array element type");
+        YabnArray array = YabnTestHelper.assertArray(element);
+        Assertions.assertEquals(8, array.elements().size(), "Expected array to have 8 elements");
+        for (YabnElement arrayElement : array.elements()) {
+            Assertions.assertEquals(YabnType.BOOLEAN_TRUE, arrayElement.getType(), "Expected array element to be boolean(true)");
+        }
+    }
+
+    @Test
     public void parseObject() {
         YabnElement element = YabnTestHelper.parseElement((byte) 0x0D, (byte) 0x0b, (byte) 0x41, (byte) 0x00, (byte) 0x0b, (byte) 0x42, (byte) 0x00, (byte) 0x00);
         Assertions.assertEquals(YabnType.OBJECT, element.getType(), "Expected object element type");

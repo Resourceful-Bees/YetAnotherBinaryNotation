@@ -1,6 +1,7 @@
 package com.teamresourceful.elements;
 
 import com.teamresourceful.utils.ByteArrayUtils;
+import com.teamresourceful.utils.ByteUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,19 +24,26 @@ public record YabnArray(@NotNull List<@NotNull YabnElement> elements) implements
         YabnType arrayType = getArrayType();
         byte[] data = arrayType != null ? new byte[]{arrayType.id} : new byte[0];
         if (elements.isEmpty()) return data;
-        for (YabnElement element : elements) {
-            if (arrayType == null) {
-                data = ByteArrayUtils.add(data, element.getType().id);
+        if (arrayType != null && !arrayType.hasData) {
+            data = ByteArrayUtils.add(data, ByteUtils.vIntToBytes(elements.size()));
+        } else {
+            for (YabnElement element : elements) {
+                if (arrayType == null) {
+                    data = ByteArrayUtils.add(data, element.getType().id);
+                }
+                data = ByteArrayUtils.add(data, element.toData());
             }
-            data = ByteArrayUtils.add(data, element.toData());
+            data = ByteArrayUtils.add(data, YabnElement.EOD);
         }
-        return ByteArrayUtils.add(data, YabnElement.EOD);
+        return data;
     }
 
     @Override
     public YabnType getType() {
         if (elements.isEmpty()) return YabnType.EMPTY_ARRAY;
-        return getArrayType() != null ? YabnType.TYPED_ARRAY : YabnType.ARRAY;
+        YabnType arrayType = getArrayType();
+        if (arrayType == null) return YabnType.ARRAY;
+        return arrayType.hasData ? YabnType.TYPED_ARRAY : YabnType.DATALESS_TYPED_ARRAY;
     }
 
     @Nullable
@@ -45,6 +53,6 @@ public record YabnArray(@NotNull List<@NotNull YabnElement> elements) implements
         for (YabnElement element : elements) {
             if (element.getType() != type) return null;
         }
-        return type.hasData ? type : null;
+        return type;
     }
 }

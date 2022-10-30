@@ -123,9 +123,18 @@ public class YabnElementTests {
         YabnArray element = new YabnArray();
         element.add(YabnPrimitive.ofByte((byte) 1));
         element.add(YabnPrimitive.ofByte((byte) 1));
-        Assertions.assertEquals(4, element.toData().length, "Expected array element to have 3 byte of data");
+        Assertions.assertEquals(4, element.toData().length, "Expected array element to have 4 byte of data");
         Assertions.assertArrayEquals(new byte[]{0x04, 0x01, 0x01, 0x00}, element.toData(), "Expected array element type");
         Assertions.assertEquals(YabnType.TYPED_ARRAY, element.getType(), "Expected typed array element type");
+    }
+
+    @Test
+    public void createDatalessTypedArray() {
+        YabnArray element = new YabnArray();
+        for (int i = 0; i < 8; i++) element.add(YabnPrimitive.ofBoolean(true));
+        Assertions.assertEquals(2, element.toData().length, "Expected array element to have 2 byte of data");
+        Assertions.assertArrayEquals(new byte[]{0x02, 0x08}, element.toData(), "Expected dataless typed array element type");
+        Assertions.assertEquals(YabnType.DATALESS_TYPED_ARRAY, element.getType(), "Expected dataless typed array element type");
     }
 
     @Test

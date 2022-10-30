@@ -46,4 +46,28 @@ public final class ByteUtils {
         return (byte1 & 0xFFL) << 56 | (byte2 & 0xFFL) << 48 | (byte3 & 0xFFL) << 40 | (byte4 & 0xFFL) << 32 | (byte5 & 0xFFL) << 24 | (byte6 & 0xFFL) << 16 | (byte7 & 0xFFL) << 8 | (byte8 & 0xFFL);
     }
 
+    public static byte[] vIntToBytes(int num) {
+        int pos = 0;
+        byte[] bytes = null;
+        if (num > 268435455 || num < 0) {
+            bytes = new byte[5];
+            bytes[pos++] = (byte) (128 | (num >>> 28));
+        }
+        if (num > 2097151 || num < 0) {
+            if (bytes == null) bytes = new byte[4];
+            bytes[pos++] = (byte) (128 | ((num >>> 21) & 127));
+        }
+        if (num > 16383 || num < 0) {
+            if (bytes == null) bytes = new byte[3];
+            bytes[pos++] = (byte) (128 | ((num >>> 14) & 127));
+        }
+        if (num > 127 || num < 0) {
+            if (bytes == null) bytes = new byte[2];
+            bytes[pos++] = (byte) (128 | ((num >>> 7) & 127));
+        }
+        if (bytes == null) bytes = new byte[1];
+        bytes[pos] = (byte) (num & 127);
+        return bytes;
+    }
+
 }
