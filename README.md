@@ -42,3 +42,30 @@ YABN Types:
 | Dataless Typed Array     | 0x12    | True     |
 
 I've put which ones have data or not and their byte id.
+
+Examples:
+
+```
+0x0D
+
+0x01Null Value 0x00 //has a key of 'Null Value ' with a value of null
+0x02Boolean True 0x00 //has a key of 'Boolean True ' with a value of true
+0x03Boolean False 0x00 //has a key of 'Boolean False ' with a value of false
+0x04Byte of 4 0x000x04 //has a key of 'Byte of 4 ' with a value of 4
+0x05Short of 256 0x00 0x000xff //has a key of 'Short of 256 ' with a value of 256
+0x06Int of 256 0x00 0x000x000x000xff //has a key of 'Int of 256 0' with a value of 256
+0x07Long of 256 0x00 0x000x000x000x000x000x000x000xff //has a key of 'Long of 256 ' with a value of null
+0x08Double of some number 0x00 0x000x000x000x000x000x000x000xff //has a key of 'Double of some number ' with a value of something
+0x09Float of some number 0x00 0x000x000x000xff //has a key of 'Float of some number ' with a value of something
+0x0AString of something 0x00 This is a C style string0x00 //has a key of 'String of something ' with a value of ' This is a C style string'
+0x0BEmpty String 0x00 //has a key of 'Empty String  with a value of ''
+0x0CArray of 1 byte 0x00 0x040x010x00 //has a key of 'Array of 1 byte ' with a value of [1]
+0x0DObject of 1 byte 0x00 0x04Key0x000x010x00 //has a key of 'Object of 1 byte ' with a value of {Key: 1}
+0x0EEmpty Array 0x00 //has a key of 'Empty Array  with a value of []
+0x0FEmpty Object 0x00 //has a key of 'Empty Object ' with a value of {}
+0x10Nullable String 0x00 0x01String\u0000With\u0000Null\u0000Spacing0x00 //has a key of 'Nullable String ' with a value of 'String\u0000With\u0000Null\u0000Spacing'
+0x11Typed Array 0x00 0x040x010x010x010x010x00  //has a key of 'Typed Array ' with a value of [1, 1, 1, 1]
+0x12Dataless Typed Array 0x00 0x0B0x8 //has a key of 'Dataless Typed Array ' with a value of ["", "", "", "", "", "", "", ""]
+
+0x00
+```
