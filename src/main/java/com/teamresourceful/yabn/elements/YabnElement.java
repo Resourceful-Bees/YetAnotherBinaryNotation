@@ -1,4 +1,4 @@
-package com.teamresourceful.elements;
+package com.teamresourceful.yabn.elements;
 
 import org.jetbrains.annotations.Nullable;
 

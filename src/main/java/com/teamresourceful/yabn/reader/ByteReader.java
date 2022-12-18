@@ -1,6 +1,6 @@
-package com.teamresourceful.reader;
+package com.teamresourceful.yabn.reader;
 
-import com.teamresourceful.utils.ByteUtils;
+import com.teamresourceful.yabn.utils.ByteUtils;
 
 public interface ByteReader {
 

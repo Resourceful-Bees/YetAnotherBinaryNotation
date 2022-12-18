@@ -1,6 +1,6 @@
-import com.teamresourceful.elements.YabnElement;
-import com.teamresourceful.elements.YabnType;
-import com.teamresourceful.elements.primitives.PrimitiveNumberContents;
+import com.teamresourceful.yabn.elements.YabnElement;
+import com.teamresourceful.yabn.elements.YabnType;
+import com.teamresourceful.yabn.elements.primitives.PrimitiveNumberContents;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

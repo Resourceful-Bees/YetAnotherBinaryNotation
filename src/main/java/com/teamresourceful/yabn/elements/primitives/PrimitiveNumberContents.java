@@ -1,4 +1,4 @@
-package com.teamresourceful.elements.primitives;
+package com.teamresourceful.yabn.elements.primitives;
 
 public interface PrimitiveNumberContents extends PrimitiveContents {
 

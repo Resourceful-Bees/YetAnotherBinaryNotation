@@ -1,6 +1,6 @@
-package com.teamresourceful.elements;
+package com.teamresourceful.yabn.elements;
 
-import com.teamresourceful.utils.ByteArrayUtils;
+import com.teamresourceful.yabn.utils.ByteArrayUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.nio.charset.StandardCharsets;

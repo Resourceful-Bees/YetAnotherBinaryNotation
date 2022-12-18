@@ -1,8 +1,8 @@
-package com.teamresourceful.elements.primitives;
+package com.teamresourceful.yabn.elements.primitives;
 
 
-import com.teamresourceful.elements.YabnType;
-import com.teamresourceful.utils.ByteUtils;
+import com.teamresourceful.yabn.elements.YabnType;
+import com.teamresourceful.yabn.utils.ByteUtils;
 
 public record FloatContents(float value) implements PrimitiveNumberContents {
 

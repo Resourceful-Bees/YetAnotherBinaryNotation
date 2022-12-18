@@ -1,6 +1,6 @@
-package com.teamresourceful.elements;
+package com.teamresourceful.yabn.elements;
 
-import com.teamresourceful.elements.primitives.*;
+import com.teamresourceful.yabn.elements.primitives.*;
 
 public record YabnPrimitive(PrimitiveContents contents) implements YabnElement {
 

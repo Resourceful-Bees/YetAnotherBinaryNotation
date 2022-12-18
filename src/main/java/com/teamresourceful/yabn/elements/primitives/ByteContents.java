@@ -1,6 +1,6 @@
-package com.teamresourceful.elements.primitives;
+package com.teamresourceful.yabn.elements.primitives;
 
-import com.teamresourceful.elements.YabnType;
+import com.teamresourceful.yabn.elements.YabnType;
 
 public record ByteContents(byte value) implements PrimitiveNumberContents {
 

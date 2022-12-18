@@ -1,9 +1,9 @@
-package com.teamresourceful.elements.primitives;
+package com.teamresourceful.yabn.elements.primitives;
 
-import com.teamresourceful.elements.YabnElement;
-import com.teamresourceful.elements.YabnType;
-import com.teamresourceful.utils.ByteArrayUtils;
-import com.teamresourceful.utils.ByteUtils;
+import com.teamresourceful.yabn.elements.YabnElement;
+import com.teamresourceful.yabn.elements.YabnType;
+import com.teamresourceful.yabn.utils.ByteArrayUtils;
+import com.teamresourceful.yabn.utils.ByteUtils;
 
 import java.nio.charset.StandardCharsets;
 

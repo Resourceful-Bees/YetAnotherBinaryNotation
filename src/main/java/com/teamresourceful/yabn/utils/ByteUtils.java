@@ -1,4 +1,4 @@
-package com.teamresourceful.utils;
+package com.teamresourceful.yabn.utils;
 
 import org.jetbrains.annotations.ApiStatus;
 

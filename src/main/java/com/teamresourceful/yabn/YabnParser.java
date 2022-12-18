@@ -1,8 +1,8 @@
-package com.teamresourceful;
+package com.teamresourceful.yabn;
 
 
-import com.teamresourceful.elements.*;
-import com.teamresourceful.reader.ByteReader;
+import com.teamresourceful.yabn.elements.*;
+import com.teamresourceful.yabn.reader.ByteReader;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

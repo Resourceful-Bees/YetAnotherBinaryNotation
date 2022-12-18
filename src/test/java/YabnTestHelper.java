@@ -1,10 +1,10 @@
-import com.teamresourceful.YabnParser;
-import com.teamresourceful.elements.YabnArray;
-import com.teamresourceful.elements.YabnElement;
-import com.teamresourceful.elements.YabnObject;
-import com.teamresourceful.elements.YabnPrimitive;
-import com.teamresourceful.elements.primitives.PrimitiveNumberContents;
-import com.teamresourceful.reader.ArrayByteReader;
+import com.teamresourceful.yabn.YabnParser;
+import com.teamresourceful.yabn.elements.YabnArray;
+import com.teamresourceful.yabn.elements.YabnElement;
+import com.teamresourceful.yabn.elements.YabnObject;
+import com.teamresourceful.yabn.elements.YabnPrimitive;
+import com.teamresourceful.yabn.elements.primitives.PrimitiveNumberContents;
+import com.teamresourceful.yabn.reader.ArrayByteReader;
 import org.junit.jupiter.api.Assertions;
 
 public class YabnTestHelper {

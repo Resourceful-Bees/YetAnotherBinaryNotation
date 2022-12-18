@@ -1,7 +1,7 @@
-package com.teamresourceful.elements;
+package com.teamresourceful.yabn.elements;
 
-import com.teamresourceful.utils.ByteArrayUtils;
-import com.teamresourceful.utils.ByteUtils;
+import com.teamresourceful.yabn.utils.ByteArrayUtils;
+import com.teamresourceful.yabn.utils.ByteUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

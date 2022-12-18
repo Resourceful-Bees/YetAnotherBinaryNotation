@@ -1,12 +1,12 @@
-package com.teamresourceful;
+package com.teamresourceful.yabn;
 
-import com.teamresourceful.elements.YabnArray;
-import com.teamresourceful.elements.YabnElement;
-import com.teamresourceful.elements.YabnObject;
-import com.teamresourceful.elements.YabnPrimitive;
-import com.teamresourceful.elements.primitives.DoubleContents;
-import com.teamresourceful.elements.primitives.FloatContents;
-import com.teamresourceful.elements.primitives.PrimitiveNumberContents;
+import com.teamresourceful.yabn.elements.YabnArray;
+import com.teamresourceful.yabn.elements.YabnElement;
+import com.teamresourceful.yabn.elements.YabnObject;
+import com.teamresourceful.yabn.elements.YabnPrimitive;
+import com.teamresourceful.yabn.elements.primitives.DoubleContents;
+import com.teamresourceful.yabn.elements.primitives.FloatContents;
+import com.teamresourceful.yabn.elements.primitives.PrimitiveNumberContents;
 
 public final class YabnCompressor {
 

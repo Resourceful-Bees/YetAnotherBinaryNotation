@@ -1,4 +1,4 @@
-package com.teamresourceful.reader;
+package com.teamresourceful.yabn.reader;
 
 public class ArrayByteReader implements ByteReader {
 
