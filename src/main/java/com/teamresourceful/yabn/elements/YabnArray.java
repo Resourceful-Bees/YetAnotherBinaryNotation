@@ -27,13 +27,18 @@ public record YabnArray(@NotNull List<@NotNull YabnElement> elements) implements
         if (arrayType != null && !arrayType.hasData) {
             data = ByteArrayUtils.add(data, ByteUtils.vIntToBytes(elements.size()));
         } else {
+            if (arrayType != null) {
+                data = ByteArrayUtils.add(data, ByteUtils.vIntToBytes(elements.size()));
+            }
             for (YabnElement element : elements) {
                 if (arrayType == null) {
                     data = ByteArrayUtils.add(data, element.getType().id);
                 }
                 data = ByteArrayUtils.add(data, element.toData());
             }
-            data = ByteArrayUtils.add(data, YabnElement.EOD);
+            if (arrayType == null) {
+                data = ByteArrayUtils.add(data, YabnElement.EOD);
+            }
         }
         return data;
     }

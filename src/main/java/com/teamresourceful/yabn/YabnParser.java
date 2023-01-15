@@ -45,25 +45,23 @@ public final class YabnParser {
         return new YabnObject(obj);
     }
 
-    private static YabnArray readArray(ByteReader data, YabnType arrayType) {
-        if (arrayType != null && !arrayType.hasData) throw new YabnException("Type for typed array is not permitted in typed arrays.");
-        List<YabnElement> elements = new ArrayList<>();
-        while (data.peek() != YabnElement.EOD) {
-            YabnType type = arrayType == null ? YabnType.fromId(data.readByte()) : arrayType;
-            elements.add(getElement(type, data));
-        }
-        data.advance(); // skip 0x00 because it needs to go to the next elements.
-        return new YabnArray(elements);
-    }
-
-    private static YabnArray readDatalessTypedArray(ByteReader data) {
-        YabnType type = YabnType.fromId(data.readByte());
-        if (type.hasData) throw new YabnException("Type for dataless typed array is not permitted in dataless typed arrays.");
+    private static YabnArray readSizedArray(ByteReader data, YabnType arrayType) {
         int size = data.readVInt();
         List<YabnElement> elements = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
+            YabnType type = arrayType == null ? YabnType.fromId(data.readByte()) : arrayType;
             elements.add(getElement(type, data));
         }
+        return new YabnArray(elements);
+    }
+
+    private static YabnArray readArray(ByteReader data) {
+        List<YabnElement> elements = new ArrayList<>();
+        while (data.peek() != YabnElement.EOD) {
+            YabnType type = YabnType.fromId(data.readByte());
+            elements.add(getElement(type, data));
+        }
+        data.advance(); // skip 0x00 because it needs to go to the next elements.
         return new YabnArray(elements);
     }
 
@@ -82,9 +80,8 @@ public final class YabnParser {
             case NULL_STRING -> YabnPrimitive.ofString(data.readNullString());
             case EMPTY_STRING -> YabnPrimitive.ofString("");
 
-            case ARRAY -> readArray(data, null);
-            case TYPED_ARRAY -> readArray(data, YabnType.fromId(data.readByte()));
-            case DATALESS_TYPED_ARRAY -> readDatalessTypedArray(data);
+            case ARRAY -> readArray(data);
+            case TYPED_ARRAY, DATALESS_TYPED_ARRAY -> readSizedArray(data, YabnType.fromId(data.readByte()));
             case OBJECT -> readyObject(data);
             case EMPTY_ARRAY -> new YabnArray();
             case EMPTY_OBJECT -> new YabnObject();

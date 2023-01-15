@@ -1,5 +1,6 @@
 package com.teamresourceful.yabn.elements;
 
+import com.teamresourceful.yabn.utils.ByteArrayUtils;
 import org.jetbrains.annotations.Nullable;
 
 public sealed interface YabnElement permits YabnObject, YabnPrimitive, YabnArray {
@@ -7,6 +8,11 @@ public sealed interface YabnElement permits YabnObject, YabnPrimitive, YabnArray
     byte EOD = 0x00; // end of data
 
     byte[] toData();
+
+    default byte[] toFullData() {
+        byte[] data = new byte[] {getType().id};
+        return ByteArrayUtils.add(data, toData());
+    }
 
     YabnType getType();
 
