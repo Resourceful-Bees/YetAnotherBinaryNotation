@@ -1,6 +1,9 @@
 package com.teamresourceful.yabn.reader;
 
+import com.teamresourceful.yabn.utils.ByteArrayList;
 import com.teamresourceful.yabn.utils.ByteUtils;
+
+import java.nio.charset.StandardCharsets;
 
 public interface ByteReader {
 
@@ -39,22 +42,6 @@ public interface ByteReader {
         return ByteUtils.fromBytes(readByte(), readByte(), readByte(), readByte(), readByte(), readByte(), readByte(), readByte());
     }
 
-//    default int readVInt() {
-//        int num = 0;
-//        int pos = 0;
-//
-//        byte curr;
-//        do {
-//            curr = readByte();
-//            num |= (curr & 127) << (pos++ * 7);
-//            if (pos > 5) {
-//                throw new RuntimeException("VInt data exceeds maximum length of 5 bytes.");
-//            }
-//        } while((curr & 128) == 128);
-//
-//        return num;
-//    }
-
     default int readVInt() {
         byte curr = readByte();
         int num = curr & 127;
@@ -74,27 +61,25 @@ public interface ByteReader {
     }
 
     default String readString() {
-        StringBuilder builder = new StringBuilder();
+        ByteArrayList bytes = new ByteArrayList();
         while (peek() != 0) {
-            builder.append(readChar());
+            bytes.add(readByte());
         }
         advance();
-        return builder.toString();
+        return new String(bytes.toArray(), StandardCharsets.UTF_8);
     }
 
     default String readNullString() {
         int nulls = readVInt();
-        String output = "";
+        ByteArrayList bytes = new ByteArrayList();
         while (nulls != 0 || peek() != 0) {
-            char c = readChar();
-            //This is like this because StringBuilder checks if it can encode and then decides to remove nulls.
-            //noinspection StringConcatenationInLoop
-            output += c;
+            byte c = readByte();
+            bytes.add(c);
             if (c == 0) {
                 nulls--;
             }
         }
         advance();
-        return output;
+        return new String(bytes.toArray(), StandardCharsets.UTF_8);
     }
 }

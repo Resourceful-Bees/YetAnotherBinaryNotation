@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.teamresourceful"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenCentral()
@@ -19,6 +19,12 @@ dependencies {
 
 java {
     withSourcesJar()
+}
+
+tasks {
+    compileJava {
+        options.encoding = "UTF-8"
+    }
 }
 
 tasks.getByName<Test>("test") {
